@@ -14,12 +14,12 @@ from html import escape
 from .format import fmt_datetime, fmt_money
 from .model import Point
 
-ACCENT = "#3a6b4d"
-GREEN = "#2f7d4f"
-TARGET = "#2563a8"
-RED = "#b42318"
-GRID = "#e4e8e3"
-MUTED = "#68756c"
+ACCENT = "var(--accent, #3a6b4d)"
+GREEN = "var(--green, #2f7d4f)"
+TARGET = "var(--blue, #2563a8)"
+RED = "var(--red, #b42318)"
+GRID = "var(--line, #e4e8e3)"
+MUTED = "var(--muted, #68756c)"
 
 RANGES = {"7d": 7, "30d": 30, "90d": 90, "all": None}
 
@@ -126,9 +126,9 @@ def price_chart(points: list[Point], now: datetime, *, currency: str | None, tar
     if not shown:
         return (f'<svg class="chart" viewBox="0 0 {width} {height}" role="img" '
                 f'aria-label="No prices recorded yet for {escape(name)}">'
-                f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="10" fill="#fcfcfa" stroke="{GRID}"/>'
+                f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="10" fill="var(--card, #fcfcfa)" stroke="{GRID}"/>'
                 f'<text x="{width / 2}" y="{height / 2 - 4}" text-anchor="middle" font-size="16" font-weight="600" '
-                f'fill="#1d3226">No price recorded yet</text>'
+                f'fill="var(--ink, #1d3226)">No price recorded yet</text>'
                 f'<text x="{width / 2}" y="{height / 2 + 20}" text-anchor="middle" font-size="13.5" fill="{MUTED}">'
                 f'Run a check to start the graph.</text></svg>')
 
@@ -186,7 +186,7 @@ def price_chart(points: list[Point], now: datetime, *, currency: str | None, tar
     for i, (p, (cx, cy)) in enumerate(zip(shown, coords)):
         hit = target is not None and p.price <= target
         stroke = GREEN if hit else ACCENT
-        fill = stroke if (i == last or hit) else "#fff"  # solid when it is the latest price or at/below the target
+        fill = stroke if (i == last or hit) else "var(--card, #fff)"  # solid when it is the latest price or at/below the target
         radius = 5.5 if i == last else 4
         out.append(f'<circle cx="{_num(cx)}" cy="{_num(cy)}" r="{radius}" fill="{fill}" stroke="{stroke}" stroke-width="2.2">'
                    f'<title>{escape(fmt_money(p.price, currency))} · {escape(fmt_datetime(p.when))}</title></circle>')
