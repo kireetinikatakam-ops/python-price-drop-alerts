@@ -4,6 +4,28 @@ from __future__ import annotations
 
 CSS = """
 :root{--bg:#faf9f6;--ink:#10231a;--body:#4f5e55;--muted:#6b786f;--line:#e5e8e2;--card:#fff;--accent:#3a6b4d;--accent-dark:#2d5640;--accent-soft:#e8f0ea;--blue:#2563a8;--blue-soft:#e6eefa;--amber:#9a6a12;--amber-soft:#fbf1dc;--red:#b42318;--red-soft:#fdeceb;--green:#2f7d4f;--green-soft:#e4f3e9;color-scheme:light}
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --bg: #121714;
+        --ink: #edf5ef;
+        --body: #c1cec4;
+        --muted: #9aa99e;
+        --line: #354139;
+        --card: #1b241e;
+        --accent: #80c99a;
+        --accent-dark: #a0dfb4;
+        --accent-soft: #263c2e;
+        --blue: #8abaff;
+        --blue-soft: #1e3047;
+        --amber: #f0c36d;
+        --amber-soft: #3d311b;
+        --red: #ff8f86;
+        --red-soft: #422523;
+        --green: #80d6a0;
+        --green-soft: #203a2a;
+    }
+}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;background:var(--bg);color:var(--body);font:16px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
